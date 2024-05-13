@@ -3,6 +3,7 @@ type StreamCreated @entity(immutable: true) {
   tokenAddress: Bytes! # address
   flowRate: BigInt! # int96
   receiver: Bytes! # address
+  address: Bytes! # wallet address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -12,6 +13,7 @@ type StreamDeleted @entity(immutable: true) {
   id: Bytes!
   tokenAddress: Bytes! # address
   receiver: Bytes! # address
+  address: Bytes! # wallet address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -22,6 +24,7 @@ type StreamUpdated @entity(immutable: true) {
   tokenAddress: Bytes! # address
   flowRate: BigInt! # int96
   receiver: Bytes! # address
+  address: Bytes! # wallet address
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
@@ -31,6 +34,49 @@ type TokenWrapped @entity(immutable: true) {
   id: Bytes!
   tokenAddress: Bytes! # address
   amount: BigInt! # uint256
+  address: Bytes! # wallet address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StreamPaused @entity(immutable: true) {
+  id: Bytes!
+  tokenAddress: Bytes! # address
+  receiver: Bytes! # address
+  address: Bytes! # wallet address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type StreamResumed @entity(immutable: true) {
+  id: Bytes!
+  tokenAddress: Bytes! # address
+  receiver: Bytes! # address
+  flowRate: BigInt! # int96
+  address: Bytes! # wallet address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TokenUnwrapped @entity(immutable: true) {
+  id: Bytes!
+  tokenAddress: Bytes! # address
+  amount: BigInt! # uint256
+  address: Bytes! # wallet address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TransactionDetails @entity {
+  id: Bytes!
+  walletAddress: Bytes! # address
+  eventType: String! # e.g., "StreamCreated", "TokenWrapped", etc.
+  tokenAddress: Bytes! # address
+  details: String # JSON string of transaction details
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!
