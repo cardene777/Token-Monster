@@ -1,0 +1,8 @@
+{
+  "sepolia": {
+    "FlowSender": {
+      "address": "0x40AcB0E5E5BA146fDb7D124fd00cF55C8A9EE9d6",
+      "startBlock": 5888841
+    }
+  }
+}
